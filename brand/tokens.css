@@ -1,0 +1,34 @@
+/*
+ * The color and type tokens, on their own.
+ *
+ * theme/cubesite.css already defines these — import this file only where the
+ * theme is not wanted, e.g. a React app that needs the palette but ships its
+ * own components (see cubeui).
+ */
+
+:root {
+  --bg: #fafaf9;
+  --fg: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e5e5e3;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --accent-fg: #ffffff;
+  --radius: 10px;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", Menlo, Consolas,
+    monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111113;
+    --fg: #ececec;
+    --muted: #9a9a9a;
+    --line: #26262a;
+    --card: #1a1a1d;
+    --accent: #7aa6ff;
+    --accent-fg: #0c0c0e;
+  }
+}

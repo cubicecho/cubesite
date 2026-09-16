@@ -1,0 +1,115 @@
+---
+layout: base.njk
+title: Adopt it
+description: How to add a cubesite-shaped GitHub Pages site to a cubicecho repo.
+permalink: /adopt/
+---
+<section class="hero">
+  <h1>Adopt it</h1>
+  <p>Ten minutes for a repo with nothing, less for one that already has a site.</p>
+</section>
+
+<section class="section">
+  <h2>A repo with no site</h2>
+
+  <ol class="steps">
+    <li>
+      <h3>Scaffold</h3>
+      <p>From a cubesite checkout, pointed at the project:</p>
+      <pre class="code"><code>node scripts/scaffold.mjs ../mcp-actual</code></pre>
+      <p>
+        This writes <code>site/</code> and <code>.github/workflows/pages.yml</code>.
+        It never overwrites a file it does not own, so it is safe to re-run.
+      </p>
+    </li>
+    <li>
+      <h3>Fill in the TODOs</h3>
+      <p>
+        Three in <code>site/src/_data/site.js</code> (tagline, description, and
+        the optional npm/docker links), and the rest in
+        <code>site/src/index.njk</code>: what it does, three capabilities, and
+        the shortest command that gets someone running.
+      </p>
+      <pre class="code"><code>cd site &amp;&amp; npm install &amp;&amp; npm run dev</code></pre>
+    </li>
+    <li>
+      <h3>Commit the lockfile too</h3>
+      <p>
+        The workflow runs <code>npm ci</code>, which needs
+        <code>site/package-lock.json</code> in the repo.
+      </p>
+      <pre class="code"><code>git add site .github/workflows/pages.yml
+git commit -m "Add a project site"</code></pre>
+    </li>
+    <li>
+      <h3>Turn Pages on</h3>
+      <p>
+        Settings → Pages → Source: <strong>GitHub Actions</strong>. This is the
+        one step no script does for you — the workflow cannot enable the feature
+        it deploys to. Push, and the site is live at
+        <code>cubicecho.github.io/&lt;repo&gt;/</code>.
+      </p>
+    </li>
+    <li>
+      <h3>Point the repo at it</h3>
+      <p>
+        Set the repo's <em>Website</em> field to the Pages URL, link it from the
+        first lines of the README, and add the project to
+        <a href="https://cubicecho.com" rel="noopener">cubicecho.com</a>.
+      </p>
+    </li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>A repo that already has a site</h2>
+  <div class="prose">
+    <p>Don't re-scaffold it. Sync the parts cubesite owns and leave your pages alone:</p>
+    <pre class="code"><code>node scripts/scaffold.mjs ../mcp-router --theme</code></pre>
+    <p>That writes four files, overwriting whatever was there:</p>
+    <ul>
+      <li><code>site/src/css/cubesite.css</code> — the shared theme</li>
+      <li><code>site/src/_includes/mark.njk</code> — the inline mark</li>
+      <li><code>site/src/assets/favicon.svg</code> and <code>logo.svg</code></li>
+    </ul>
+    <p>Then, by hand:</p>
+    <ul>
+      <li>
+        Load <code>cubesite.css</code> before your own stylesheet, and cut from
+        yours everything the theme now covers — what is left is the project's
+        own, and it should be short.
+      </li>
+      <li>
+        Replace the emoji in the header with
+        <code>{% raw %}{% include "mark.njk" %}{% endraw %}</code>, and give the
+        wordmark the markup the theme expects — see
+        <a href="{{ site.repo }}/blob/main/template/src/_includes/base.njk" rel="noopener">template/src/_includes/base.njk</a>.
+      </li>
+      <li>
+        Swap your <code>pages.yml</code> for
+        <a href="{{ site.repo }}/blob/main/workflows/pages.yml" rel="noopener">the canonical one</a>
+        if yours has drifted from it.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <h2>What a project site is</h2>
+  <div class="prose">
+    <p>
+      One page, usually: the name, the one-line pitch, what it does, how to run
+      it, and links out. Anything longer belongs in the README — the site points
+      at the README, not the other way round. Repos with genuinely more to say
+      (<code>mcp-router</code>, <code>mcp-skills-manager</code>) add
+      <code>get-started</code> and <code>docs</code> pages on the same layout.
+      That is the ceiling, not the floor.
+    </p>
+    <p>
+      The floor is worth stating plainly, because it is the whole point: a
+      library with three sentences of description and an install line still gets
+      a site. It costs one file and it is the difference between a link that
+      shows someone what this is and a link that shows them a repo.
+    </p>
+  </div>
+</section>

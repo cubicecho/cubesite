@@ -1,0 +1,64 @@
+# cubesite's own deploy.
+#
+# It differs from workflows/pages.yml — the one this repo hands to projects — in
+# one way: the site is at the repo root rather than in site/, because here the
+# site *is* the repo. Everything else is deliberately the same file.
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # The published site is the distribution: projects fetch and diff
+      # theme/cubesite.css against what they vendored, so a build that dropped
+      # it would break that check quietly rather than loudly.
+      - name: The theme and brand shipped
+        run: |
+          for f in index.html theme/cubesite.css brand/mark.svg brand/logo.svg brand/favicon.svg brand/tokens.css; do
+            if [ ! -s "_site/$f" ]; then
+              echo "::error::_site/$f is missing or empty"
+              exit 1
+            fi
+          done
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

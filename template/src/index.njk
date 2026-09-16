@@ -1,0 +1,52 @@
+---
+layout: base.njk
+---
+<section class="hero project-hero">
+  <h1>{{ site.name }}</h1>
+  <p>{{ site.tagline }}</p>
+  <p class="cta">
+    <a class="button" href="#start">Get started</a>
+    <a class="button secondary" href="{{ site.repo }}" rel="noopener">GitHub ↗</a>
+  </p>
+</section>
+
+<section class="section">
+  <h2>What it does</h2>
+  <p class="section-intro">
+    TODO — two or three sentences. What problem it solves and who for. Not the
+    README; the reason someone would click through to it.
+  </p>
+
+  <ul class="card-grid">
+    <li>
+      <article class="card">
+        <h3>TODO</h3>
+        <p>TODO — one capability, one sentence.</p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3>TODO</h3>
+        <p>TODO — one capability, one sentence.</p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3>TODO</h3>
+        <p>TODO — one capability, one sentence.</p>
+      </article>
+    </li>
+  </ul>
+</section>
+
+<section class="section" id="start">
+  <h2>Get started</h2>
+  <div class="prose">
+    <pre class="code"><code>TODO — the shortest command that gets someone running</code></pre>
+  </div>
+
+  <p class="readme-link">
+    Full documentation lives in the project README:
+    <a href="{{ site.repo }}#readme" rel="noopener">{{ site.repo }}</a>
+  </p>
+</section>

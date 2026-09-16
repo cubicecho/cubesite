@@ -1,0 +1,17 @@
+{
+  "name": "cubesite",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Websites and branding for the cubicecho projects: the shared theme, the site scaffold, and the Pages workflow",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "audit": "node scripts/audit.mjs",
+    "scaffold": "node scripts/scaffold.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

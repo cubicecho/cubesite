@@ -1,0 +1,89 @@
+---
+layout: base.njk
+title: Brand
+description: The Cubic Echo mark, colors, and type — and the few rules for using them.
+permalink: /brand/
+---
+<section class="hero">
+  <h1>Brand</h1>
+  <p>A cube over three ripples: the thing, and the echo of it.</p>
+</section>
+
+<section class="section">
+  <h2>The mark</h2>
+  <p class="section-intro">
+    Strokes only, on an <code>80&times;80</code> viewBox, colored by
+    <code>currentColor</code> — so one file is legible on either theme.
+  </p>
+
+  <ul class="card-grid">
+    <li>
+      <article class="card">
+        <h3><a class="card-link" href="{{ '/brand/mark.svg' | url }}">mark.svg</a></h3>
+        <p>Inline in a page header. Inherits <code>currentColor</code>.</p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3><a class="card-link" href="{{ '/brand/logo.svg' | url }}">logo.svg</a></h3>
+        <p>Standalone: README, og image, anywhere it is <code>&lt;img&gt;</code>-ed and has no text color to inherit.</p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3><a class="card-link" href="{{ '/brand/favicon.svg' | url }}">favicon.svg</a></h3>
+        <p>Tab icon. Heavier strokes and more spread, because at 16px the thin version fills in.</p>
+      </article>
+    </li>
+  </ul>
+
+  <div class="prose">
+    <p>Rules, such as they are:</p>
+    <ul>
+      <li><strong>Don't re-tint it.</strong> It is <code>currentColor</code> on purpose; a brand-blue variant for dark headers is one more thing to keep in step.</li>
+      <li><strong>Don't set it below 24px</strong> except as a favicon — the ripples merge.</li>
+      <li><strong>Don't pair it with a second mark.</strong> A project's identity is its name in mono next to this one. The emoji-per-project habit is what this repo exists to end.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Color</h2>
+  <p class="section-intro">
+    Defined in <a href="{{ '/theme/cubesite.css' | url }}">cubesite.css</a>, and on
+    their own in <a href="{{ '/brand/tokens.css' | url }}">tokens.css</a> for apps that
+    want the palette without the stylesheet. Both accents clear 4.5:1 against
+    their own background.
+  </p>
+
+  <ul class="swatches">
+    <li class="swatch"><div class="chip" style="background: var(--bg)"></div><div class="label">--bg</div></li>
+    <li class="swatch"><div class="chip" style="background: var(--fg)"></div><div class="label">--fg</div></li>
+    <li class="swatch"><div class="chip" style="background: var(--muted)"></div><div class="label">--muted</div></li>
+    <li class="swatch"><div class="chip" style="background: var(--line)"></div><div class="label">--line</div></li>
+    <li class="swatch"><div class="chip" style="background: var(--card)"></div><div class="label">--card</div></li>
+    <li class="swatch"><div class="chip" style="background: var(--accent)"></div><div class="label">--accent</div></li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Type &amp; voice</h2>
+  <div class="prose">
+    <p>
+      System sans for prose. <strong>Mono for names</strong> — project titles,
+      card headings, the wordmark on a project site — because every one of these
+      names is also something you type. That contrast is most of the identity;
+      keep it.
+    </p>
+    <p>
+      Names are lowercase, as published: <code>mcp-router</code>, not "MCP
+      Router". Taglines say what the thing <em>is</em>, in plain words, with no
+      "blazing-fast", no "seamless", and no leading "A powerful".
+    </p>
+  </div>
+
+  <p class="readme-link">
+    The long version lives in the repo:
+    <a href="{{ site.repo }}/blob/main/brand/README.md" rel="noopener">brand/README.md</a>
+  </p>
+</section>

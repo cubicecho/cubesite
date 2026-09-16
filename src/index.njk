@@ -1,0 +1,100 @@
+---
+layout: base.njk
+---
+<section class="hero project-hero">
+  <h1>cubesite</h1>
+  <p>{{ site.tagline }}</p>
+  <p class="cta">
+    <a class="button" href="{{ '/adopt/' | url }}">Adopt it</a>
+    <a class="button secondary" href="{{ site.repo }}" rel="noopener">GitHub ↗</a>
+  </p>
+</section>
+
+<section class="section">
+  <h2>What it does</h2>
+  <p class="section-intro">
+    Every repo under Cubic Echo should have a site at
+    <code>cubicecho.github.io/&lt;repo&gt;/</code> — even the small libraries,
+    whose whole story is a paragraph and an install line. cubesite is what makes
+    that cheap: a scaffold that writes the site, a stylesheet they all share, and
+    one Pages workflow that is the same file in every repo.
+  </p>
+
+  <ul class="card-grid">
+    <li>
+      <article class="card">
+        <h3>theme</h3>
+        <p>
+          <a class="card-link" href="{{ '/theme/cubesite.css' | url }}">cubesite.css</a> —
+          the colors, type, header, cards and prose every project site is built
+          from, in both light and dark.
+        </p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3>brand</h3>
+        <p>The mark, the wordmark, the tokens, and the few rules for using them.
+          <span class="card-actions"><a class="card-site" href="{{ '/brand/' | url }}">see them ↗</a></span>
+        </p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3>template</h3>
+        <p>A one-page Eleventy site, already branded, with the TODOs marked. Fill
+          in three of them and it is a real site.</p>
+      </article>
+    </li>
+    <li>
+      <article class="card">
+        <h3>pages.yml</h3>
+        <p>Build <code>site/</code>, refuse to publish an empty one, deploy. The
+          same file in every repo, so a fix travels.</p>
+      </article>
+    </li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Why</h2>
+  <div class="prose">
+    <p>
+      The same argument as <a href="https://github.com/cubicecho/cubeui" rel="noopener">cubeui</a>,
+      one layer out. Four repos had a site before this one existed —
+      <code>mcp-router</code>, <code>mcp-skills-manager</code>, <code>auto-cal</code>,
+      <code>cubeui</code> — and each had written its own stylesheet, its own
+      layout, its own header. They do not look like the same org, because nothing
+      made them. One of them wears a 🔀 as its logo.
+    </p>
+    <p>
+      The other half is coverage. Most repos had no site at all, so the only
+      public face of something like <code>agent-core</code> was a README in
+      GitHub's chrome — fine for a reader already on GitHub, nothing for a link
+      in a chat or a search result. A one-page site is cheap. It was just never
+      anybody's job.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Get started</h2>
+  <div class="prose">
+    <pre class="code"><code>git clone https://github.com/cubicecho/cubesite
+cd cubesite &amp;&amp; npm install
+
+# add a site to a repo that has none
+node scripts/scaffold.mjs ../&lt;repo&gt;
+
+# re-brand a repo that already has one
+node scripts/scaffold.mjs ../&lt;repo&gt; --theme
+
+# which repos are still missing a site?
+npm run audit</code></pre>
+  </div>
+
+  <p class="readme-link">
+    Full documentation lives in the project README:
+    <a href="{{ site.repo }}#readme" rel="noopener">{{ site.repo }}</a>
+  </p>
+</section>
