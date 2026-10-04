@@ -23,21 +23,38 @@ Rules, such as they are:
 
 ## Color
 
-Tokens live in [`tokens.css`](./tokens.css), and
-[`theme/cubesite.css`](../theme/cubesite.css) already includes them.
+The palette is [cubeui](https://github.com/cubicecho/cubeui)'s, under its names
+and with its default light and dark values — `tokens/palette.mjs` there is the
+source, so a project's site and its app are the same colors. Tokens live in
+[`tokens.css`](./tokens.css), and [`theme/cubesite.css`](../theme/cubesite.css)
+already includes them. A value changes in cubeui first, then here.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--bg` | `#fafaf9` | `#111113` | Page background. Warm off-white, not `#fff`. |
-| `--fg` | `#1a1a1a` | `#ececec` | Body text, headings, the mark. |
-| `--muted` | `#6b6b6b` | `#9a9a9a` | Taglines, nav, captions, table headers. |
-| `--line` | `#e5e5e3` | `#26262a` | Borders and rules. |
-| `--card` | `#ffffff` | `#1a1a1d` | Cards, code blocks, inline code. |
-| `--accent` | `#2563eb` | `#7aa6ff` | Links and the primary button. |
-| `--accent-fg` | `#ffffff` | `#0c0c0e` | Text on the accent. |
+| `--background` | `#ffffff` | `#0a0a0a` | The page. |
+| `--foreground` | `#0a0a0a` | `#fafafa` | Body text, headings, the mark. |
+| `--secondary` | `#fafafa` | `#262626` | A surface raised off the page: cards. |
+| `--neutral` | `#171717` | `#e5e5e5` | The primary button. Its text is `--neutral-foreground`. |
+| `--hover` | `#d4eaf0` | `#2a454c` | The fill under a pointer, on the secondary button. |
+| `--active` | `#2d6d7e` | `#69a2b3` | The focus ring. |
+| `--info` | `#0369a1` | `#0ea5e9` | Links. |
+| `--positive` | `#15803d` | `#22c55e` | Unused by the theme; there for a project that needs to say it. |
+| `--warning` | `#b45309` | `#f59e0b` | As above. |
+| `--negative` | `#e7000b` | `#ff6467` | As above. |
 
-Both accents clear 4.5:1 against their own `--bg`. If a project wants another
-color, it belongs in that project's `site.css` as a one-off, not in the tokens.
+The hex is for reading; the files carry cubeui's `oklch()` values.
+
+**Nothing is a quieter copy of another token.** Muted text — taglines, nav,
+captions — is `--foreground` at 60%, a border is `--foreground` at 10%, and the
+fill behind code is `--foreground` at 10%, each written as
+`color-mix(in oklab, var(--foreground) 60%, transparent)`.
+
+The older names (`--bg`, `--fg`, `--muted`, `--line`, `--card`, `--accent`,
+`--accent-fg`) are still defined, as aliases of the above, so a project's
+`site.css` written against them keeps working. Don't use them in new rules.
+
+If a project wants another color, it belongs in that project's `site.css` as a
+one-off, not in the tokens.
 
 ## Type
 
