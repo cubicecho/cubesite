@@ -2,33 +2,74 @@
  * The color and type tokens, on their own.
  *
  * theme/cubesite.css already defines these — import this file only where the
- * theme is not wanted, e.g. a React app that needs the palette but ships its
- * own components (see cubeui).
+ * theme is not wanted and cubeui is not installed. An app that installs cubeui
+ * gets the same palette from `@cubeui/tokens` and should not load both.
+ */
+
+/*
+ * The palette is cubeui's — tokens/palette.mjs there is the source, and these
+ * are its default light and dark values under its names, as dist/tokens.web.css
+ * emits them. A token is named for what the colour means, and nothing is a
+ * quieter copy of another: muted text is `foreground` at 60%, a border is
+ * `foreground` at 10%, written as a color-mix() where cubeui writes
+ * `text-foreground/60`. Change a value there first, then here.
+ *
+ * Dark follows the system. cubeui's web build keys it off `.dark` on <html>
+ * because an app has a toggle; a static page has nothing to set the class.
  */
 
 :root {
-  --bg: #fafaf9;
-  --fg: #1a1a1a;
-  --muted: #6b6b6b;
-  --line: #e5e5e3;
-  --card: #ffffff;
-  --accent: #2563eb;
-  --accent-fg: #ffffff;
-  --radius: 10px;
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.985 0 0);
+  --neutral: oklch(0.205 0 0);
+  --neutral-foreground: oklch(0.985 0 0);
+  --hover: oklch(0.922 0.025 218);
+  --active: oklch(0.5 0.07 218);
+  --active-foreground: oklch(1 0 0);
+  --positive: oklch(0.5273 0.1371 150.069);
+  --positive-foreground: oklch(1 0 0);
+  --warning: oklch(0.5553 0.1455 48.998);
+  --warning-foreground: oklch(1 0 0);
+  --info: oklch(0.5 0.1193 242.749);
+  --info-foreground: oklch(1 0 0);
+  --negative: oklch(0.577 0.245 27.325);
+  --negative-foreground: oklch(1 0 0);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", Menlo, Consolas,
     monospace;
+
+  /* The names this file used before it took cubeui's. Kept so a project's own
+     site.css still resolves after a `--theme` re-sync; nothing in here uses
+     them, and new rules should not either. */
+  --bg: var(--background);
+  --fg: var(--foreground);
+  --card: var(--secondary);
+  --muted: color-mix(in oklab, var(--foreground) 60%, transparent);
+  --line: color-mix(in oklab, var(--foreground) 10%, transparent);
+  --accent: var(--info);
+  --accent-fg: var(--info-foreground);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111113;
-    --fg: #ececec;
-    --muted: #9a9a9a;
-    --line: #26262a;
-    --card: #1a1a1d;
-    --accent: #7aa6ff;
-    --accent-fg: #0c0c0e;
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.269 0 0);
+    --neutral: oklch(0.922 0 0);
+    --neutral-foreground: oklch(0.205 0 0);
+    --hover: oklch(0.371 0.035 218);
+    --active: oklch(0.68 0.065 218);
+    --active-foreground: oklch(0.145 0 0);
+    --positive: oklch(0.7227 0.192 149.579);
+    --positive-foreground: oklch(0.145 0 0);
+    --warning: oklch(0.7686 0.1647 70.08);
+    --warning-foreground: oklch(0.145 0 0);
+    --info: oklch(0.6847 0.1479 237.323);
+    --info-foreground: oklch(0.145 0 0);
+    --negative: oklch(0.704 0.191 22.216);
+    --negative-foreground: oklch(0.145 0 0);
   }
 }
